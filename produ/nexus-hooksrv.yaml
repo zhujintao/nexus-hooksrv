@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nexus-hooksrv
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: REGISTRY_ADDRESS
+      value: repo.koall.io:8080
+    - name: REGISTRY_SECRET
+      value: registry-secret
+    name: nexus-hooksrv
+    image: repo.koall.io:8080/nexus-hooksrv
+    ports:
+    - containerPort: 8080
+      hostPort: 8080
+  imagePullSecrets: 
+  - name: registry-secret
+
